@@ -1,0 +1,35 @@
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="../js/jquery.audiobutton.js"></script>
+  <link rel="stylesheet" type="text/css" href="../js/jquery.audiobutton.css">
+  <script>
+    var p = [];
+    $( function() {
+      clipListButton.configure( { single_player : true }, { root_url : 'audio/' } );
+      
+      p[0] = clipListButton.createPlayer( document.getElementById( 'B1' ) ); 
+      p[1] = clipListButton.createPlayer( document.getElementById( 'B2' ), { pause : 200 } ); 
+      
+      $( '#set-files' ).click( function() {
+        p[1].setAudio( [ 'c1.mp3', 'c2.mp3', 'c3.mp3', 'c4.mp3', 'c5.mp3', 'c6.mp3' ] );
+      });
+      $( '#stop' ).click( function() {
+        clipListButton.stopAll();
+      });
+    });
+  </script>
+  <style>
+  .audiobutton-container {
+    height: 60px;
+    width : 60px;
+  }
+  </style>
+</head>
+<body>
+  <div id="B1" class="audiobutton-container" data-files="c1.mp3, c2.mp3, c3.mp3, c4.mp3, c5.mp3, c6.mp3"></div>
+  <div id="B2" class="audiobutton-container"></div>
+  <button id="set-files">set files</button>
+  <button id="stop">stop</button>
+</body>
+</html>      
